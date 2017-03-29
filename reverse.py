@@ -11,6 +11,6 @@ import os
 
 def reverse(audio_file):
     if audio_file.endswith('.wav'):
-        os.system('sox -V %s backwards.wav reverse' % audio_file )
+        os.system('sox %s backwards.wav reverse' % audio_file )
     else:
-        pass
+        os.system('lame --decode %s - | sox - backwards.wav reverse' % audio_file )

@@ -40,18 +40,16 @@
       </nav>
       
       <div class="container">
-          <h1>Welcome to dsfasdfsadfs.com!</h1>
+          <h1 class="text-center">Welcome to dsfasdfsadfs.com!</h1>
+          {% load static %}
+          <image src="{% static 'posts/Screen_Shot_2017-03-27_at_1.26.38_AM.png' %}" class="img-responsive center-block" style="max-height:350px"/>
           <h2>Latest Posts</h2> 
+          <hr/>
           {% for post in posts.all %}
-          <a href="{% url 'post_details' post.id %}">{{ post.title }}</a>
-          <br />
-          {{ post.pub_date_pretty }}
-          <br />
-          <img src="{{ post.image.url }}" />
-          <br />
-          {{ post.summary }}
-          <br />
-          <br />
+          <a href="{% url 'post_details' post.id %}"><h3>{{ post.title }}</h3></a>
+          <h4><span class="glyphicon glyphicon-time" aria-hidden="true"></span> {{ post.pub_date_pretty }}</h4>
+          <!--img src="{{ post.image.url }}" class="img-responsive" style="max-height:100px"/-->
+          <p>{{ post.summary }}</p>
           {% endfor %}
       </div>
 

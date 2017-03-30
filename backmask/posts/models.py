@@ -6,8 +6,8 @@ from django.db import models
 class Post(models.Model):
     title = models.CharField(max_length=250)
     pub_date = models.DateTimeField()
-    image = models.ImageField(upload_to='media/images')
-    # audio = 
+    image = models.ImageField(upload_to='media/images', default=None)
+    audio = models.FileField(upload_to='media/audio', default=None)
     # reversed_audio = 
     body = models.TextField()
     

@@ -8,7 +8,6 @@ class Post(models.Model):
     pub_date = models.DateTimeField()
     image = models.ImageField(upload_to='media/images', default=None)
     audio = models.FileField(upload_to='media/audio', default=None)
-    # reversed_audio = 
     body = models.TextField()
     
     def __str__(self):
@@ -19,3 +18,18 @@ class Post(models.Model):
         
     def summary(self):
         return self.body[:100] + '...'
+
+    def reverse_audio(self):
+        # TODO: give backwards file a unique name
+        # TODO: properly define outfile
+        # TODO: make reversed audio a class attribute
+        outfile = '../media/audio/backwards.wav'
+        try:
+            if self.audio.endswith('.wav'):
+                os.system('sox %s %s reverse' % (self.audio, outfile) )
+            else:
+                os.system('lame --decode %s - | sox - %s' % (self.audio, outfile) ) 
+        except:
+            outfile = self.audio
+        
+        return outfile
